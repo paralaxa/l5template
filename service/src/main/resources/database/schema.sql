@@ -1,5 +1,3 @@
-CREATE SCHEMA expense AUTHORIZATION sa;
-
 create table category (id bigint not null, description varchar(255), name varchar(255), creator_id bigint, primary key (id));
 create table expense (id bigint not null, description varchar(255), category_id bigint, creator_id bigint, primary key (id));
 create table user (id bigint not null, username varchar(255), primary key (id));
