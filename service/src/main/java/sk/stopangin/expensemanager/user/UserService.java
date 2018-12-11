@@ -6,4 +6,6 @@ package sk.stopangin.expensemanager.user;
 public interface UserService {
    UserDto create(UserDto userDto);
    UserDto getById(Long id);
+   UserDto update(UserDto userDto);
+
 }

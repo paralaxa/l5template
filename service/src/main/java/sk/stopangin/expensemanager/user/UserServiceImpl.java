@@ -2,8 +2,7 @@ package sk.stopangin.expensemanager.user;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import sk.stopangin.expensemanager.common.Transactional;
 
 
 /**
@@ -22,14 +21,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDto create(UserDto userDto) {
-        DefaultTransactionDefinition defaultTransactionDefinition = new DefaultTransactionDefinition();
-        final TransactionStatus transaction = platformTransactionManager.getTransaction(defaultTransactionDefinition);
         final User user = userDao.create(userMapper.fromDto(userDto));
         final UserDto userDto1 = userMapper.fromDomain(user);
-        platformTransactionManager.commit(transaction);
         return userDto1;
     }
+
+    @Override
+    @Transactional
+    public UserDto update(UserDto userDto) {
+        final User user = userDao.update(userMapper.fromDto(userDto));
+        final UserDto userDto1 = userMapper.fromDomain(user);
+        return userDto1;    }
 
     @Override
     public UserDto getById(Long id) {

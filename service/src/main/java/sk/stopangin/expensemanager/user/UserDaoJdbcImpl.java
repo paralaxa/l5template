@@ -14,6 +14,8 @@ import java.sql.SQLException;
 public class UserDaoJdbcImpl implements UserDao, RowMapper<User> {
     private static final String INSERT_INTO_USER = "INSERT INTO user VALUES(?,?)";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id=? LIMIT 1";
+    private static final String UPDATE_USER = "UPDATE user SET username=? WHERE id=?";
+
     private JdbcTemplate jdbcTemplate;
 
     public UserDaoJdbcImpl(JdbcTemplate jdbcTemplate) {
@@ -28,7 +30,19 @@ public class UserDaoJdbcImpl implements UserDao, RowMapper<User> {
 
     @Override
     public User update(User user) {
-        return null;
+        User userInDb = null;
+        try {
+            userInDb = findById(user.getId());
+        } catch (Exception e) {
+        }
+        if (userInDb == null) {
+            return create(user);
+        } else {
+            jdbcTemplate.update(UPDATE_USER, user.getUsername(), user.getId());
+            return user;
+        }
+
+
     }
 
     @Override
