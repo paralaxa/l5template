@@ -2,6 +2,7 @@ package sk.stopangin.expensemanager.user;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import sk.stopangin.auditing.Auditable;
 import sk.stopangin.expensemanager.common.Transactional;
 
 
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    @Auditable
     public UserDto create(UserDto userDto) {
         final User user = userDao.create(userMapper.fromDto(userDto));
         final UserDto userDto1 = userMapper.fromDomain(user);
