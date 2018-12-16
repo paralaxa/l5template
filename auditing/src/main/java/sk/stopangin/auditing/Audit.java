@@ -6,7 +6,7 @@ package sk.stopangin.auditing;
 public class Audit {
     private Long id;
     private String auditedEntityClassname;
-    private Long auditedEntityId;
+
 
     public Long getId() {
         return id;
@@ -22,13 +22,5 @@ public class Audit {
 
     public void setAuditedEntityClassname(String auditedEntityClassname) {
         this.auditedEntityClassname = auditedEntityClassname;
-    }
-
-    public Long getAuditedEntityId() {
-        return auditedEntityId;
-    }
-
-    public void setAuditedEntityId(Long auditedEntityId) {
-        this.auditedEntityId = auditedEntityId;
     }
 }
