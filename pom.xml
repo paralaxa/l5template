@@ -14,7 +14,7 @@
         <module>auditing</module>
     </modules>
     <properties>
-        <spring-context.version>5.1.0.RELEASE</spring-context.version>
+        <spring-context.version>5.1.13.RELEASE</spring-context.version>
         <aspectjweaver.version>1.9.1</aspectjweaver.version>
         <mapstruct-processor.version>1.2.0.Final</mapstruct-processor.version>
         <jackson.version>2.9.7</jackson.version>
